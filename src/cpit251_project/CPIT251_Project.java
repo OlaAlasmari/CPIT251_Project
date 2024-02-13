@@ -9,6 +9,7 @@ public class CPIT251_Project {
         System.out.println("Ola Alasmari");
         System.out.println("Hanin Aldosary");
         System.out.println("Shouq Alsubaie");
+        System.out.println("Ghala Alshareef");
         
     }
     
