@@ -1,7 +1,7 @@
 
 package cpit251_project;
 
-public class TourGuide {
+public class TourGuide extends User{
     int GID;
     int GPhone;
     String GEmail;

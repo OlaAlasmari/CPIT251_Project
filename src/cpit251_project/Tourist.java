@@ -1,7 +1,7 @@
 
 package cpit251_project;
 
-public class Tourist {
+public class Tourist extends User{
 
     int TID;
     String Plan;

@@ -2,7 +2,7 @@
 package cpit251_project;
 
 
-public class Supervisor {
+public class Supervisor extends User{
 
     Place place;
     int sID;
