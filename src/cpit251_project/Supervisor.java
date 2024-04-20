@@ -9,7 +9,7 @@ public class Supervisor extends User{
     Place place;
     int sID;
     static ArrayList<Supervisor> supervisors;
-    ArrayList<Place> Places = new ArrayList<>();
+   static ArrayList<Place> Places = new ArrayList<>();
 
     public Supervisor(Place place, int sID) {
         this.place = place;

@@ -7,7 +7,7 @@ public class Place {
     int pID;
     String pCategory;
     String classification;
-    double pRate;
+    String pRate;
     String pEva;
     String pDesc;
     String pHours;
@@ -15,7 +15,7 @@ public class Place {
     
    
     
-    public Place(String placeName, int pID, String pCategory, String classification, double pRate, String pEva, String pDesc, String pHours) {
+    public Place(String placeName, int pID, String pCategory, String classification, String pRate, String pEva, String pDesc, String pHours) {
         this.placeName = placeName;
         this.pID = pID;
         this.pCategory = pCategory;
@@ -59,11 +59,11 @@ public class Place {
         this.classification = classification;
     }
 
-    public double getpRate() {
+    public String getpRate() {
         return pRate;
     }
 
-    public void setpRate(double pRate) {
+    public void setpRate(String pRate) {
         this.pRate = pRate;
     }
 
