@@ -6,10 +6,10 @@ public class TourGuide extends User{
     int GPhone;
     String GEmail;
     String GHours;
-    double GRate;
+    String GRate;
     String GPlaces;
     
-    public TourGuide(int GID, int GPhone, String GEmail, String GHours, double GRate, String GPlaces){
+    public TourGuide(int GID, int GPhone, String GEmail, String GHours, String GRate, String GPlaces){
        this.GID = GID;
        this.GPhone = GPhone;
        this.GEmail = GEmail;
@@ -45,12 +45,12 @@ public class TourGuide extends User{
         this.GHours = GHours;
     }
     
-    public double getGRate(){
+    public String getGRate(){
         return GRate;
         
     }
     
-    public void setGRate(double GRate){
+    public void setGRate(String GRate){
        this.GRate = GRate; 
     }
     
