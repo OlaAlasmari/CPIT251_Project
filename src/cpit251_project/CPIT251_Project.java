@@ -5,7 +5,6 @@ package cpit251_project;
 import java.util.Scanner;
 
 
-
 public class CPIT251_Project {
 
     
