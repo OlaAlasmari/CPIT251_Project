@@ -3,7 +3,7 @@ package cpit251_project;
 
 
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 public class CPIT251_Project {
 
@@ -23,19 +23,24 @@ public class CPIT251_Project {
         supervisors.AddSupervisor(new Supervisor(1));
         supervisors.AddSupervisor(new Supervisor(1));
         supervisors.AddSupervisor(new Supervisor(2));
-
+        
+        //array  list for search 
         Tourist tourist= new Tourist();
+         ArrayList<Place> places = new ArrayList<>();
+         // name,id,  category, classification, rate, evaluation, description, hour, city, location 
+         places.add(new Place("1/2 milion",2,"vist" , "family" , "****" ,"A","description","9pm","london","jack")); 
+        places.add(new Place("labeeb", 3 ,"resturant" , "C" , "***" ,"C","description","10am","jeddah","sari")); 
+        places.add(new Place("zara", 5 ,"shop" , "C" , "*" ,"A","description","9am","newyork","mainStreet")); 
         
+       Place p = new Place("labeeb", 3 ,"resturant" , "C" , "***" ,"C","description","10am","jeddah","sari");
+       Place p2 = new Place("zara", 5 ,"shop" , "C" , "*" ,"A","description","9am","newyork","mainStreet");
+       Place pg = new Place("1/2 milion",2,"vist" , "family" , "****" ,"A","description","9pm","london","jack");
         
-        Place p = new Place("London", 2 ,"Vist" , "C" , "****" ,"A","B","9");
-        Place p2 = new Place("London", 2 ,"Vist" , "C" , "****" ,"A","B","9");
-Place pg = new Place("Ghala", 2 ,"Vist" , "C" , "****" ,"A","B","9");
-        
-
+                
        supervisors.AddPlace(p,1);
-       supervisors.AddPlace(pg,1);
+      supervisors.AddPlace(pg,1);
        
-       
+        
        
         System.out.println("Are you: a supervisor, a tour guide, a tourist?");
         String Type=s.nextLine();
@@ -47,6 +52,28 @@ Place pg = new Place("Ghala", 2 ,"Vist" , "C" , "****" ,"A","B","9");
                                "3- Evaluate a place.\n" +
                                "4- Find a tour guide.");
             int numSer=s.nextInt();
+            if(numSer==1){
+            System.out.println("Enter name of place");
+            String name=s.next(); 
+            String result=tourist.searchPlace(places,name);
+            System.out.println(result);
+            }
+            
+            if(numSer==2){
+            System.out.println("Enter category: ");
+            String category=s.next(); 
+            System.out.println("Enter classification: ");
+            String classification=s.next(); 
+            System.out.println("Enter city: ");
+            String city=s.next();
+            System.out.println("Enter location: ");
+            String location=s.next();
+             
+            String openHour=s.next();
+            
+           
+             tourist.Filter(places,category,classification,city,location,openHour );
+            }
             
             if(numSer==3) {
                 
@@ -62,14 +89,13 @@ Place pg = new Place("Ghala", 2 ,"Vist" , "C" , "****" ,"A","B","9");
                 
                 tourist.evaluPlace(comment, starsRate, placeName);
             }
+            
+            
            
        
             
         }
-       
-       
-      
-       
+         
        
        
     }

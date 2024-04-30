@@ -11,19 +11,25 @@ public class Place {
     String pEva;
     String pDesc;
     String pHours;
+    String city; 
+    String location; 
 
     
    
     
-    public Place(String placeName, int pID, String pCategory, String classification, String pRate, String pEva, String pDesc, String pHours) {
+    public Place(String placeName, int pID, String pCategory, String classification,
+            String pRate, String pEva, String pDesc, String pHours, String city, String location) {
+        
         this.placeName = placeName;
         this.pID = pID;
         this.pCategory = pCategory;
         this.classification = classification;
         this.pRate = pRate;
-        this.pEva = pEva;
-        this.pDesc = pDesc;
+        this.pEva = pEva;  //evaluation by tourist
+        this.pDesc = pDesc;  //place description 
         this.pHours = pHours;
+        this.city=city; 
+        this.location=location; 
     }
 
 
@@ -89,6 +95,22 @@ public class Place {
 
     public void setpHours(String pHours) {
         this.pHours = pHours;
+    }
+    
+    public String getlocation() {
+        return location;
+    }
+    
+    public void setlocation(String location) {
+        this.location = location;
+    }
+    
+      public String getcity() {
+        return city;
+    }
+    
+    public void setcity(String city) {
+        this.city = city;
     }
 
 }
