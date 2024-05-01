@@ -2,30 +2,84 @@
 package cpit251_project;
 
 public class TourGuide extends User{
+    String name;
     int GID;
-    int GPhone;
+    String GPhone;
     String GEmail;
     String GHours;
     String GRate;
     String GPlaces;
+    String city;
     
-    public TourGuide(int GID, int GPhone, String GEmail, String GHours, String GRate, String GPlaces){
-       this.GID = GID;
-       this.GPhone = GPhone;
-       this.GEmail = GEmail;
-       this.GHours = GHours;
-       this.GRate = GRate;
-       this.GPlaces = GPlaces;
+    
+
+    public TourGuide(String name, int GID, String GPhone, String GEmail, String GHours, String GRate, String GPlaces, String city) {
+        this.name = name;
+        this.GID = GID;
+        this.GPhone = GPhone;
+        this.GEmail = GEmail;
+        this.GHours = GHours;
+        this.GRate = GRate;
+        this.GPlaces = GPlaces;
+        this.city = city;
+    }
+
+    public TourGuide(String name, String GPhone, String GEmail, String GHours, String city) {
+        this.name = name;
+        this.GPhone = GPhone;
+        this.GEmail = GEmail;
+        this.GHours = GHours;
+        this.city = city;
+    }
+
+    
+
+    public TourGuide(String name, String GPhone, String GEmail, String GHours, String GRate,String GPlayces, String city) {
+        this.name = name;
+        this.GPhone = GPhone;
+        this.GEmail = GEmail;
+        this.GHours = GHours;
+        this.GRate = GRate;
+        this.GPlaces = GPlaces;
+        this.city = city;
     }
     
-    public int getGPhone (){
+    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getGID() {
+        return GID;
+    }
+
+    public void setGID(int GID) {
+        this.GID = GID;
+    }
+
+    public String getGPhone() {
         return GPhone;
-        
     }
-    
-    public void setGPhone(int phoneNum){
+
+    public void setGPhone(String GPhone) {
         this.GPhone = GPhone;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
+    
+    
     
     public String getGEmail(){
         return GEmail;
@@ -62,6 +116,8 @@ public class TourGuide extends User{
     public void setGPlaces(String placeName){
        this.GPlaces = GPlaces; 
     }
+    
+    
     
 }
 

@@ -135,5 +135,6 @@ public class Tourist extends User {
     public boolean sharePlan(String Plan) {
         return false;
     }
+    
 
 }
