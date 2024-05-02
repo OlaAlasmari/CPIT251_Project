@@ -11,13 +11,14 @@ public class Tourist extends User {
     String Plan;
     //ArrayList<Place> places = new ArrayList<>();
 
-    public Tourist(int TID, String plan) {
-        this.TID = TID;
-        this.Plan = plan;
+    public Tourist( String name, String Email, String Adress, String Gender, String Pass, String userType) {
+        super(name, Email, Adress, Gender, Pass, userType);
+
     }
 
     public Tourist() {
     }
+
 
 
 
