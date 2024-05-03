@@ -1,16 +1,16 @@
 
 package cpit251_project;
-
-import static cpit251_project.Supervisor.IsPlaceExit;
-import static cpit251_project.Supervisor.Places;
 import java.util.ArrayList;
 
 public class Tourist extends User {
 
     int TID;
     String Plan;
-    //ArrayList<Place> places = new ArrayList<>();
+    Supervisor supervis;
 
+    
+    
+    
     public Tourist( String name, String Email, String Adress, String Gender, String Pass, String userType) {
         super(name, Email, Adress, Gender, Pass, userType);
 
@@ -46,16 +46,16 @@ public class Tourist extends User {
         return false;
     }
 
-    public String searchPlace(ArrayList<Place> place,String pName) {
+    public String searchPlace(ArrayList<Place> Places,String pName) {
         boolean flag=false;
-          for(int i=0; i<place.size(); i++){
-              String name=place.get(i).placeName; 
-              String category=place.get(i).getpCategory(); 
-              String classification=place.get(i).getclassification();
-              String pHours=place.get(i).getpHours();
-              String city=place.get(i).getcity();
-              String rate=place.get(i).pRate;
-              String description=place.get(i).pDesc; 
+          for(int i=0; i<Places.size(); i++){
+              String name=Places.get(i).placeName; 
+              String category=Places.get(i).getpCategory(); 
+              String classification=Places.get(i).getclassification();
+              String pHours=Places.get(i).getpHours();
+              String city=Places.get(i).getcity();
+              String rate=Places.get(i).pRate;
+              String description=Places.get(i).pDesc; 
               
             if(name.equalsIgnoreCase(pName)){
             return "Name of Place: "+name+"\nDescription: "+description+"\nCity: "
@@ -63,22 +63,23 @@ public class Tourist extends User {
                     "\nOpening Hour: "+pHours+"\nRate: "+rate; 
             
             }
-
-          
           }
         return "No result found";
     }
-
-    public void Filter(ArrayList<Place> place, String pCategory, String classification,String city, String location,String pHours) {
+       
+        
+        
+        
+    public void Filter(ArrayList<Place> Places, String pCategory, String classification,String city, String location,String pHours) {
          int searchResult=0; //count number of result  
          
-        for(int i=0; i<place.size(); i++){
+        for(int i=0; i<Places.size(); i++){
             
-        String category2=place.get(i).getpCategory();
-        String classification2=place.get(i).getclassification();
-        String pHours2=place.get(i).getpHours();
-        String city2=place.get(i).getcity();
-        String location2=place.get(i).getlocation(); 
+        String category2=Places.get(i).getpCategory();
+        String classification2=Places.get(i).getclassification();
+        String pHours2=Places.get(i).getpHours();
+        String city2=Places.get(i).getcity();
+        String location2=Places.get(i).getlocation(); 
          
           
           //check tourist specification
@@ -87,39 +88,34 @@ public class Tourist extends User {
             
             searchResult=searchResult+1; 
             System.out.println("searchResult "+searchResult);
-             System.out.println("place Name: "+place.get(i).placeName+"    Rate: "+place.get(i).getpRate()); }
+             System.out.println("place Name: "+Places.get(i).placeName+"    Rate: "+Places.get(i).getpRate()); }
         
          }// end of loop    
         
         // place not found
         if(searchResult==0){
-         System.out.println("No result found");  }
+         System.out.println("\n\nNo result found");  }
         
         
     }
-
-    public void evaluPlace(String comment, String rate, String pName) {
+    
+    
+    public void evaluPlace(ArrayList<Place> Places,String comment, String rate, String pName) {
         
-        if(!(IsPlaceExit(Places, pName))) {
-            
+        if(supervis.IsPlaceExits(Places,pName) == false) {
             if(rate.equals("*") || rate.equals("**") || rate.equals("***") || rate.equals("****") || rate.equals("*****")){
-                
                 System.out.println("Your rating has been successfully submitted! Thank you for sharing your opinion. ");
                 addEvaToPlaceDB(comment, rate, pName); 
             }
             else {
                 System.out.println("You rated incorrectly, please rate from one to five stars and no more.");
-            }
-           
-        } 
-        
-        
-        else {
+          }
+        }
+       else {
             System.out.println("Error, the place does not exist."); 
         }
-        
-        
     }
+    
     
     
     public void addEvaToPlaceDB(String comment, String rate, String pName) {
@@ -136,6 +132,8 @@ public class Tourist extends User {
     public boolean sharePlan(String Plan) {
         return false;
     }
+
+   
     
 
 }

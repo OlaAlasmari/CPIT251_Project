@@ -2,28 +2,50 @@ package cpit251_project;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import static cpit251_project.Supervisor.Places;
 
 public class CPIT251_Project {
 
     public static void main(String[] args) {
+
         int SID;
+        int numSer = 0;// ID for supervisior 
+        
+        
+        // Array list 
         ArrayList<User> user = new ArrayList<>();
+        ArrayList<TourGuide> TourGuides = new ArrayList<>();
 
+        // object 
+        Supervisor supervisors = new Supervisor();
+        Tourist Tour = new Tourist();
+
+
+        // Adding a tour guide 
+        //TourGuide(String name,int GID, String GPhone, String GEmail, String GHours, String GRate, String GPlaces,String city)
+        TourGuide T1 = new TourGuide("Ahmad", 1111, "0511111111", "A@gmail.com", "2:00PM to 12:00AM", "***", "1/2 milion", "Jeddah");
+        TourGuide T2 = new TourGuide("Ali", 2222, "0511222222", "B@gmail.com", "2:00PM to 12:00AM", "*****", "labeeb", "Jeddah");
+        TourGuide T3 = new TourGuide("Omar", 3333, "0511333333", "C@gmail.com", "2:00PM to 12:00AM", "**", "zara", "Jeddah");
+        TourGuides.add(T1);
+        TourGuides.add(T2);
+        TourGuides.add(T3);
+
+        
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        
+        
         Scanner s = new Scanner(System.in);
-
         System.out.println("\n\n********************************************************************");
         System.out.println("****************************** Tajawl ******************************");
         System.out.println("********************************************************************\n\n");
 
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         System.out.println("Log in / Sign up?");
         String Register = s.nextLine();
         String type = null;
         Tourist tourist = null;
         TourGuide tourGuide = null;
-
-        User u = new User("Ali123@gmail.com", "Aa123455");
-        user.add(u);
 
         if ("Log in".equalsIgnoreCase(Register)) {
             System.out.print("Enter Email: ");
@@ -37,11 +59,10 @@ public class CPIT251_Project {
                 type = UserNow.getUserType();
             } else {
                 System.out.println("This user is not exists, please sign up.");
+                System.exit(0);
 
             }
-        }
-
-        if ("Sign up".equalsIgnoreCase(Register)) {
+        } else if ("Sign up".equalsIgnoreCase(Register)) {
             System.out.print("Register as: Tourist / Tour Guide? ");
             type = s.nextLine();
             System.out.print("Enter Email: ");
@@ -73,58 +94,48 @@ public class CPIT251_Project {
                 type = tourGuide.getUserType();
             }
 
+        } else {
+            System.out.print("Sorry ! You can't access \n");
+            System.exit(0);
         }
 
-        Supervisor supervisors = new Supervisor();
-
-        
         //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        ArrayList<TourGuide> TourGuides = new ArrayList<>();
-        //TourGuide(String name,int GID, String GPhone, String GEmail, String GHours, String GRate, String GPlaces,String city)
-        TourGuide T1 = new TourGuide("Ahmad", 1111, "0511111111", "A@gmail.com", "2:00PM to 12:00AM", "***", "1/2 milion", "Jeddah");
-        TourGuide T2 = new TourGuide("Ali", 2222, "0511222222", "B@gmail.com", "2:00PM to 12:00AM", "*****", "labeeb", "Jeddah");
-        TourGuide T3 = new TourGuide("Omar", 3333, "0511333333", "C@gmail.com", "2:00PM to 12:00AM", "**", "zara", "Jeddah");
-
-        TourGuides.add(T1);
-        TourGuides.add(T2);
-        TourGuides.add(T3);
-
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         System.out.println("Are you: a supervisor, a tour guide, a tourist?");
         String Type = s.nextLine();
+        do {
+            if ("Tourist".equalsIgnoreCase(Type)) {
 
-        if ("Tourist".equalsIgnoreCase(Type)) {
-            do {
-                System.out.println("Choose from the following list the desired service number:\n"
+                System.out.println("\n\nChoose from the following list the desired service number:\n"
                         + "1- Find a place.\n"
                         + "2- Filtering places.\n"
                         + "3- Evaluate a place.\n"
                         + "4- Find a tour guide.\n"
-                        + "5- Quit.");
-                int numSer = s.nextInt();
+                        + "5- Quit.\n");
+                numSer = s.nextInt();
                 if (numSer == 1) {
                     System.out.println("Enter name of place");
                     String name = s.next();
-                    String result = tourist.searchPlace(Places, name);
+                    String result = Tour.searchPlace(supervisors.Places(), name);
                     System.out.println(result);
                 }
 
-                if (numSer == 2) {
-                    System.out.println("Enter category: ");
+                else if (numSer == 2) {
+                    System.out.print("Enter category: ");
                     String category = s.next();
-                    System.out.println("Enter classification: ");
+                    System.out.print("Enter classification: ");
                     String classification = s.next();
-                    System.out.println("Enter city: ");
+                    System.out.print("Enter city: ");
                     String city = s.next();
-                    System.out.println("Enter location: ");
+                    System.out.print("Enter location: ");
                     String location = s.next();
-
+                    System.out.print("Enter opening hours: ");
                     String openHour = s.next();
 
-                    tourist.Filter(Places, category, classification, city, location, openHour);
+                    Tour.Filter(supervisors.Places(), category, classification, city, location, openHour);
                 }
 
-                if (numSer == 3) {
+                else if (numSer == 3) {
 
                     System.out.println("Enter the name of the place you visited:");
                     String placeName = s.next();
@@ -134,11 +145,10 @@ public class CPIT251_Project {
 
                     System.out.println("Add a comment (optional): ");
                     String comment = s.next();
-
-                    tourist.evaluPlace(comment, starsRate, placeName);
+                    Tour.evaluPlace(supervisors.Places(), comment, starsRate, placeName);
                 }
 
-                if (numSer == 4) {
+                else if (numSer == 4) {
                     int count = 0;
                     System.out.println("Enter the city: ");
                     String city = s.next();
@@ -148,40 +158,44 @@ public class CPIT251_Project {
                                     + TourGuides.get(i).GEmail + "\nWork hours: " + TourGuides.get(i).GHours + "\nRate: " + TourGuides.get(i).GRate
                                     + "\nPlace: " + TourGuides.get(i).GPlaces + "\nCity: " + TourGuides.get(i).city + "\n");
                         }
-
                     }
-
                 }
-                if (numSer == 5) {
-                    System.exit(0);
+                else if (numSer == 5) {
+                    System.out.println("\nGood Bye");
+                    break;
                 }
-            } while (!Type.equalsIgnoreCase("Quit"));
-        }
+            }
+            
 
-        if ("supervisor".equalsIgnoreCase(Type)) {
-            do {
-                System.out.println("Choose from the following list the desired service number:\n"
+            //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            
+            
+            
+            else if ("supervisor".equalsIgnoreCase(Type)) {
+
+                System.out.println("\n\nChoose from the following list the desired service number:\n"
                         + "1- Add new supervisor.\n"
                         + "2- Add new places.\n"
                         + "3- View places.\n"
                         + "4- View supervisors.\n"
-                        + "5- Quit.");
-                int numSerSuper = s.nextInt();
-                if (numSerSuper == 1) {
+                        + "5- Quit.\n");
+                numSer = s.nextInt();
+                if (numSer == 1) {
                     System.out.print("Enter ID of supervisior: ");
                     SID = s.nextInt();
                     System.out.print("Enter name of supervisior: ");
                     String name = s.next();
                     supervisors.AddSupervisor(new Supervisor(SID, name));
                 }
-                if (numSerSuper == 2) {
-                    System.out.print("Enter your ID : ");
+                if (numSer == 2) {
+                    System.out.print("Enter your supervisior ID : ");
                     SID = s.nextInt();
                     System.out.print("Enter placeName : ");
                     String pname = s.next();
                     System.out.print("Enter placeID : ");
                     int ID = s.nextInt();
-                    System.out.print("Enter placeCategory : ");
+                    System.out.print("Enter place Category : ");
                     String Category = s.next();
                     System.out.print("Enter classification : ");
                     String classification = s.next();
@@ -200,20 +214,22 @@ public class CPIT251_Project {
                     supervisors.AddPlace(new Place(pname, ID, Category, classification, placeRate, Evalution, Description, placeHours, city, location), SID);
 
                 }
-                if (numSerSuper == 3) {
+                else if (numSer == 3) {
                     supervisors.printPlaceInfo();
                 }
-                if (numSerSuper == 4) {
+                else if (numSer == 4) {
                     supervisors.printSupervisorInfo();
                 }
 
-                if (numSerSuper == 5) {
-                    System.exit(0);
+                else if (numSer == 5) {
+                    System.out.println("\nGood Bye");
+                    break;
                 }
-
-            } while (!Type.equalsIgnoreCase("Quit"));
-
-        }
+            }
+            else{
+                System.out.println("Please Enter correct Type");
+                break;
+            }
+        } while (numSer != 5);
     }
-
 }

@@ -22,23 +22,8 @@ public class TourGuide extends User {
         this.city = city;
     }
 
-    public TourGuide(String name, String GPhone, String GEmail, String GHours, String city) {
-        this.name = name;
-        this.GPhone = GPhone;
-        this.GEmail = GEmail;
-        this.GHours = GHours;
-        this.city = city;
-    }
 
-    public TourGuide(String name, String GPhone, String GEmail, String GHours, String GRate, String GPlayces, String city) {
-        this.name = name;
-        this.GPhone = GPhone;
-        this.GEmail = GEmail;
-        this.GHours = GHours;
-        this.GRate = GRate;
-        this.GPlaces = GPlaces;
-        this.city = city;
-    }
+   
 
     public TourGuide(String GPhone, String GHours, String GPlaces, String name, String Email, String Adress, String Gender, String Pass, String userType) {
         super(name, Email, Adress, Gender, Pass, userType);

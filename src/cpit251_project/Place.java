@@ -1,6 +1,7 @@
 package cpit251_project;
 
 
+
 public class Place {
 
     String placeName;
@@ -13,10 +14,14 @@ public class Place {
     String pHours;
     String city; 
     String location; 
-
+    Supervisor s;
     
    
     
+   public Place(){
+       
+       
+   }
     public Place(String placeName, int pID, String pCategory, String classification,
             String pRate, String pEva, String pDesc, String pHours, String city, String location) {
         
@@ -31,6 +36,10 @@ public class Place {
         this.city=city; 
         this.location=location; 
     }
+
+  
+
+    
 
 
     public String getplaceName() {
@@ -112,5 +121,7 @@ public class Place {
     public void setcity(String city) {
         this.city = city;
     }
+
+    
 
 }
