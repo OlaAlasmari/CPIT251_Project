@@ -11,6 +11,14 @@ public class User {
     String Pass;
     String userType;
 
+    public User() {
+
+    }
+
+    public User(String name) {
+        this.name = name;
+    }
+
     public User(String name, String Email, String Adress, String Gender, String Pass, String userType) {
         this.name = name;
         this.Email = Email;
@@ -19,6 +27,7 @@ public class User {
         this.Pass = Pass;
         this.userType = userType;
     }
+
     public User(String Email, String Pass) {
         this.Email = Email;
         this.Pass = Pass;
@@ -31,14 +40,6 @@ public class User {
         }
 
         return null;
-    }
-    
-    public User(){
-        
-    }
-    
-    public User(String name){
-       this.name = name; 
     }
 
     public boolean login(String Email, String pass) {

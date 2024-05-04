@@ -102,7 +102,7 @@ public class Tourist extends User {
     
     public void evaluPlace(ArrayList<Place> Places,String comment, String rate, String pName) {
         
-        if(supervis.IsPlaceExits(Places,pName) == false) {
+        if(supervis.IsPlaceExits(Places,pName) == true ) {
             if(rate.equals("*") || rate.equals("**") || rate.equals("***") || rate.equals("****") || rate.equals("*****")){
                 System.out.println("Your rating has been successfully submitted! Thank you for sharing your opinion. ");
                 addEvaToPlaceDB(comment, rate, pName); 

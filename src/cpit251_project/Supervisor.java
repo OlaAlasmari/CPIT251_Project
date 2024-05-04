@@ -3,14 +3,12 @@ package cpit251_project;
 import java.util.ArrayList;
 
 public class Supervisor extends User {
-    
-    
+
     public Place place;
     int sID;
     static ArrayList<Supervisor> supervisors;
-    public static  ArrayList<Place> Places = new ArrayList<>();
+    public static ArrayList<Place> Places = new ArrayList<>();
 
-    
     public Supervisor(Place place, int sID) {
         this.place = place;
         this.sID = sID;
@@ -26,8 +24,8 @@ public class Supervisor extends User {
     }
 
     public Supervisor() {
-        supervisors= new ArrayList<>();
-        
+        supervisors = new ArrayList<>();
+
     }
 
     public Place getPlace() {
@@ -50,10 +48,6 @@ public class Supervisor extends User {
         return false;
     }
 
-    public boolean addPlace(int pID, String pName, String pCategory, String pDesc, String pHours) {
-        return false;
-    }
-
     public boolean deleteTourGuide(int GID) {
         return false;
     }
@@ -66,33 +60,25 @@ public class Supervisor extends User {
         return false;
     }
 
-    public void AddSupervisor(Supervisor newSuperID) {
-
-        boolean found = false;
-        for (Supervisor s : supervisors) {
-            if (s.getsID() == newSuperID.getsID()) { // check if supervisorID are exit or no
-                found = true;
-            }
-        }
-
-        if (found == false) { // supervisorID is new supervisor
-            supervisors.add(newSuperID);
+    public void AddSupervisor(Supervisor newSupervisor) {
+        if (isSupervisorIdPresent(newSupervisor.getsID())) { //if ID is found (already exist)
+            System.out.println("\nSupervisor with the same ID already exists\n");
+        } else { //if ID is not found 
+            supervisors.add(newSupervisor); //Add the new supervisor
             System.out.println("\nSupervisor added successfully\n");
-        } else {
-            System.out.println("\nSupervisor with the same ID already exists\n"); // found == true supervisorID is exit
-
         }
     }
 
     public void printSupervisorInfo() {
-        for (Supervisor s : supervisors) {
-            System.out.println("\nID: " + s.getsID() + "\t\t Name: " + s.getName());
+        for (Supervisor supervisor : supervisors) {
+            System.out.println("\nID: " + supervisor.getsID() + "\t\t Name: " + supervisor.getName()); //Print id and name for each supervisor
         }
     }
 
+    
     public static boolean isSupervisorIdPresent(int sID) {
-        for (Supervisor s : supervisors) {
-            if (s.getsID() == sID) {
+        for (Supervisor supervisor : supervisors) {
+            if (supervisor.getsID() == sID) {
                 return true; // Return true if the ID is found
             }
         }
@@ -100,53 +86,42 @@ public class Supervisor extends User {
         return false; // Return false if the ID is not found
     }
 
-    
-    
-    private static boolean IsPlaceExit(ArrayList<Place> Places,String PlaceName) {
-        boolean isExit = false;
-        for (Place p : Places) {
-            if (p.getplaceName().equalsIgnoreCase(PlaceName)) { // check if place found 
-                return isExit;
+    private static boolean IsPlaceExit(ArrayList<Place> Places, String PlaceName) {
+        for (Place place : Places) {
+            if (place.getplaceName().equalsIgnoreCase(PlaceName)) { 
+                return true; //Return true if the place is not exist
             }
         }
-        isExit = true;
-        return isExit;
+        return false; //Return true if the place is exist (means we can not add the place)
     }
-    
-    
-    public static boolean IsPlaceExits(ArrayList<Place> Places,String PlaceName) {
-     return IsPlaceExit(Places, PlaceName);
+
+    public static boolean IsPlaceExits(ArrayList<Place> Places, String PlaceName) {
+        return IsPlaceExit(Places, PlaceName);
     }
-    
-    
-    
-    
-    public void AddPlace(Place place , int sID) {
+
+    public void AddPlace(Place place, int sID) {
         if (isSupervisorIdPresent(sID)) { // check if the user is supervisor or not
-            if (IsPlaceExit(Places, place.placeName)) {  // check if the place is found or not
+            if (!IsPlaceExit(Places, place.placeName)) {  // check if the place is found or not
                 Places.add(place);
-                System.out.println("\n Place Added Sucessfuly");
+                System.out.println("\n Place Added Sucessfuly"); //if the place is not exist , add it
 
             } else {
-                System.out.println("\n Place already exist");
+                System.out.println("\n Place already exist"); //if the place is already exist 
             }
         } else {
-            System.out.println("\n You don't have permission to add ");
+            System.out.println("\n You don't have permission to add "); //if the user is not supervisor
         }
     }
 
-    
-    
-    public void printPlaceInfo() {
-        for (Place p : Places){
-            System.out.println("name: " + p.getplaceName()+ "\nID: " + p.pID + "\nCateogry: " + p.getpCategory() + "\nClassification: " + p.getclassification()
-                    + "\nrate: " + p.getpRate() + "\nevalution: " + p.getpEva() + "\ndescribe: " + p.getpDesc()+ "\nhourse: " + p.getpHours()+ "\ncity: "+p.getcity()
-                    + "\nlocation: "+p.getlocation()+"\n------------------\n");
+    public void printPlaceInfo() { 
+        for (Place place : Places) {
+            System.out.println("name: " + place.getplaceName() + "\nID: " + place.pID + "\nCateogry: " + place.getpCategory() + "\nClassification: " + place.getclassification()
+                    + "\nrate: " + place.getpRate() + "\nevalution: " + place.getpEva() + "\ndescribe: " + place.getpDesc() + "\nhourse: " + place.getpHours() + "\ncity: " + place.getcity()
+                    + "\nlocation: " + place.getlocation() + "\n------------------\n");
         }
     }
-    
-   
-    public ArrayList <Place> Places(){
+
+    public ArrayList<Place> Places() {
         return Places;
     }
-}
+} 
