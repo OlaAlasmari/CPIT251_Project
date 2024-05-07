@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class CPIT251_Project {
 
     static Scanner s;
+    static Scanner sLine;
     static int SID;
     static Supervisor supervisors;
 
@@ -20,20 +21,14 @@ public class CPIT251_Project {
         supervisors = new Supervisor();
         Tourist Tour = new Tourist();
 
-        
-        
         // Adding a tour guide 
-        //TourGuide(String name,int GID, String GPhone, String GEmail, String GHours, String GRate, String GPlaces,String city)
-        TourGuide T1 = new TourGuide("Ahmad", 1111, "0511111111", "A@gmail.com", "2:00PM to 12:00AM", "***", "1/2 milion", "Jeddah");
-        TourGuide T2 = new TourGuide("Ali", 2222, "0511222222", "B@gmail.com", "2:00PM to 12:00AM", "*****", "labeeb", "Jeddah");
-        TourGuide T3 = new TourGuide("Omar", 3333, "0511333333", "C@gmail.com", "2:00PM to 12:00AM", "**", "zara", "Jeddah");
-        TourGuides.add(T1);
-        TourGuides.add(T2);
-        TourGuides.add(T3);
+        addTourGuides(TourGuides);
+       
 
         //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         s = new Scanner(System.in);
+        sLine = new Scanner(System.in);
         System.out.println("\n\n********************************************************************");
         System.out.println("****************************** Tajawl ******************************");
         System.out.println("********************************************************************\n\n");
@@ -74,7 +69,6 @@ public class CPIT251_Project {
             String Adress = s.nextLine();
             System.out.print("Enter Gender : ");
             String Gender = s.nextLine();
-            
 
             if ("Tourist".equalsIgnoreCase(type)) {
 
@@ -91,18 +85,16 @@ public class CPIT251_Project {
 
                 tourGuide = new TourGuide(phone, Hours, places, Name, Email, Adress, Gender, Password, type);
                 type = tourGuide.getUserType();
-            }
-            else{
+            } else {
                 System.out.print("Error ! You Should Enter Correct Type \n");
                 System.exit(0);
             }
-                
 
         } else {
             System.out.print("Sorry ! You can't access \n");
             System.exit(0);
         }
-         System.out.println("\nWellcome in Tajawl App!!! \n\n");
+        System.out.println("\nWellcome in Tajawl App!!! \n\n");
         //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         System.out.println("Are you: a supervisor, a tour guide, a tourist?");
@@ -145,45 +137,37 @@ public class CPIT251_Project {
                     int count = 0;
                     System.out.println("Enter the city: ");
                     String city = s.next();
-                    for (int i = 0; i < TourGuides.size(); i++) {
-                        if (city.equalsIgnoreCase(TourGuides.get(i).city)) {
-                            System.out.println((++count) + "- Name of TourGuide: " + TourGuides.get(i).name + "\nPhone number: " + TourGuides.get(i).GPhone + "\nEmail: "
-                                    + TourGuides.get(i).GEmail + "\nWork hours: " + TourGuides.get(i).GHours + "\nRate: " + TourGuides.get(i).GRate
-                                    + "\nPlace: " + TourGuides.get(i).GPlaces + "\nCity: " + TourGuides.get(i).city + "\n");
-                        }
-                    }
+                    System.out.println("Enter the place: ");
+                    String place = sLine.nextLine();
+                    System.out.println("Enter the time: ");
+                    String time = s.next();
+                    
+                    String results = Tour.searchTourGuide(TourGuides, city,place,time);
+                    System.out.println("\n" + results);
+
                 } else if (numSer == 5) {
 
                     break;
                 }
-            }
-
-
-             //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            } //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
             //'''''''''''''' SUPERVISOR ''''''''''''''''''''''''''''''''''
             //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            
-            
-            else if ("supervisor".equalsIgnoreCase(Type)) { 
+            else if ("supervisor".equalsIgnoreCase(Type)) {
                 menuSupervisior(); // menu for supervisor choice
                 numSer = s.nextInt(); // number of service
 
-                if (numSer == 1) {  
+                if (numSer == 1) {
                     AddSupervisor();
-                } 
-                else if (numSer == 2) {
+                } else if (numSer == 2) {
                     AddPlace();
 
-                }
-                else if (numSer == 3) {
+                } else if (numSer == 3) {
                     supervisors.printPlaceInfo();
 
-                }
-                else if (numSer == 4) {
+                } else if (numSer == 4) {
                     supervisors.printSupervisorInfo();
 
-                }
-                else if (numSer == 5) {
+                } else if (numSer == 5) {
                     break;
                 }
 
@@ -192,12 +176,11 @@ public class CPIT251_Project {
                 break;
             }
 
-        } while (numSer != 5); 
+        } while (numSer != 5);
         System.out.println("\nGood Bye");
 
     }
 
-    
     // menu supervisor
     public static void menuSupervisior() {
         System.out.println("\n\nChoose from the following list the desired service number:\n"
@@ -208,7 +191,7 @@ public class CPIT251_Project {
                 + "5- Quit.\n");
 
     }
-    
+
     // menu supervisor
     public static void menuTour() {
         System.out.println("\n\nChoose from the following list the desired service number:\n"
@@ -246,6 +229,18 @@ public class CPIT251_Project {
         String location = s.next();
         supervisors.AddPlace(new Place(pname, ID, Category, classification, placeRate, Evalution, Description, placeHours, city, location), SID); // call method with new object of places to added
 
+    }
+
+    public static void addTourGuides(ArrayList<TourGuide> TourGuides) {
+        //TourGuide(String name,int GID, String GPhone, String GEmail, String GHours, String GRate, String GPlaces,String city)
+        TourGuide T1 = new TourGuide("Ahmad", 1111, "0511111111", "A@gmail.com", "2:00PM to 12:00AM", "***", "1/2 million", "Jeddah");
+        TourGuide T2 = new TourGuide("Ali", 2222, "0511222222", "B@gmail.com", "2:00PM to 12:00AM", "*****", "labeeb", "Jeddah");
+        TourGuide T3 = new TourGuide("Omar", 3333, "0511333333", "C@gmail.com", "2:00PM to 12:00AM", "**", "zara", "Jeddah");
+        
+        // Adding the default tour guides to the provided ArrayList
+        TourGuides.add(T1);
+        TourGuides.add(T2);
+        TourGuides.add(T3);
     }
 
     public static void AddSupervisor() {
