@@ -121,7 +121,6 @@ public class CPIT251_Project {
                     String location = s.next();
                     System.out.print("Enter opening hours: ");
                     String openHour = s.next();
-
                     Tour.Filter(supervisors.Places(), category, classification, city, location, openHour);
                 } else if (numSer == 3) {
 
@@ -250,5 +249,5 @@ public class CPIT251_Project {
         String name = s.next();
         supervisors.AddSupervisor(new Supervisor(SID, name)); // call method with new Supervisor parameter to added
     }
-
+ 
 }

@@ -46,7 +46,8 @@ public class Tourist extends User {
     }
 
     public String searchPlace(ArrayList<Place> Places, String pName) {
-        boolean flag = false;
+       
+         //loop to find place 
         for (int i = 0; i < Places.size(); i++) {
             String name = Places.get(i).placeName;
             String category = Places.get(i).getpCategory();
@@ -55,7 +56,7 @@ public class Tourist extends User {
             String city = Places.get(i).getcity();
             String rate = Places.get(i).pRate;
             String description = Places.get(i).pDesc;
-
+            //if name of place matches the place name entered by tourist print information 
             if (name.equalsIgnoreCase(pName)) {
                 return "Name of Place: " + name + "\nDescription: " + description + "\nCity: "
                         + city + "\nCategory: " + category + "\nClassification: " + classification
@@ -63,12 +64,14 @@ public class Tourist extends User {
 
             }
         }
+        // no place found 
         return "No result found";
     }
 
     public void Filter(ArrayList<Place> Places, String pCategory, String classification, String city, String location, String pHours) {
         int searchResult = 0; //count number of result  
 
+         //loop to find places according to tourist specification 
         for (int i = 0; i < Places.size(); i++) {
 
             String category2 = Places.get(i).getpCategory();
@@ -80,9 +83,11 @@ public class Tourist extends User {
             //check tourist specification
             if (pCategory.equalsIgnoreCase(category2) && classification.equalsIgnoreCase(classification2)
                     && pHours.equalsIgnoreCase(pHours2) && city.equalsIgnoreCase(city2) && location.equalsIgnoreCase(location2)) {
-
+                   
                 searchResult = searchResult + 1;
+                
                 System.out.println("searchResult " + searchResult);
+                //print place name with rate 
                 System.out.println("place Name: " + Places.get(i).placeName + "    Rate: " + Places.get(i).getpRate());
             }
 

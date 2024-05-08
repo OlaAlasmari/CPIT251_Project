@@ -124,4 +124,8 @@ public class Supervisor extends User {
     public ArrayList<Place> Places() {
         return Places;
     }
+
+    void add(String albalad, int i, String historical, String family, String string, String great_place, String old_jeddah, String pm, String jeddah, String centre_of_jeddah) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 } 
