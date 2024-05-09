@@ -89,10 +89,10 @@ public class Supervisor extends User {
     private static boolean IsPlaceExit(ArrayList<Place> Places, String PlaceName) {
         for (Place place : Places) {
             if (place.getplaceName().equalsIgnoreCase(PlaceName)) { 
-                return true; //Return true if the place is not exist
+                return true; //Return true if the place is exist
             }
         }
-        return false; //Return true if the place is exist (means we can not add the place)
+        return false; //Return false if the place is not exist
     }
 
     public static boolean IsPlaceExits(ArrayList<Place> Places, String PlaceName) {

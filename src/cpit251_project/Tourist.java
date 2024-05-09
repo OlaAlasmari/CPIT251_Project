@@ -100,17 +100,27 @@ public class Tourist extends User {
 
     }
 
-    public void evaluPlace(ArrayList<Place> Places, String comment, String rate, String pName) {
+    public void evaluPlace(ArrayList<Place> Places, String TouristComment, String placeRate, String placeName) {
 
-        if (supervis.IsPlaceExits(Places, pName) == true) {
-            if (rate.equals("*") || rate.equals("**") || rate.equals("***") || rate.equals("****") || rate.equals("*****")) {
-                System.out.println("Your rating has been successfully submitted! Thank you for sharing your opinion. ");
-                addEvaToPlaceDB(comment, rate, pName);
+        //calling the method “is place exists” from the Supervisor class, to check if the place entered by the tourist exists.
+        if (supervis.IsPlaceExits(Places, placeName) == true) { //if the method return true, go for the second check.
+            
+            //check the number of stars if it are between 1 and 5
+            if (placeRate.equals("*") || placeRate.equals("**") || placeRate.equals("***") || placeRate.equals("****") || placeRate.equals("*****")) {
+                
+                //print a confirmation sentence for the tourist
+                System.out.println("Your rating has been successfully submitted! Thank you for sharing your opinion.");
+                
+                //send the evaluation to the method of saving in the database
+                addEvaToPlaceDB(TouristComment, placeRate, placeName);
+                
+                //if the tourist enters more than 5 stars
             } else {
                 System.out.println("You rated incorrectly, please rate from one to five stars and no more.");
             }
+            
         } else {
-            System.out.println("Error, the place does not exist.");
+            System.out.println("Error, the place does not exist."); // if the method return false, it will print this. 
         }
     }
 

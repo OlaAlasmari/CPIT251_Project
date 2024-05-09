@@ -221,16 +221,55 @@ public class TouristTest {
      * Test of evaluPlace method, of class Tourist.
      */
     @Test
-    public void testEvaluPlace() {
-        System.out.println("evaluPlace");
-        ArrayList<Place> Places = null;
-        String comment = "";
-        String rate = "";
-        String pName = "";
-        Tourist instance = new Tourist();
-        instance.evaluPlace(Places, comment, rate, pName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testEvaluPlace_AllTrue() {
+        ByteArrayOutputStream out= new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        
+        ArrayList<Place> Places = new Supervisor().Places();
+        String TouristComment = "Place is nice!";
+        String placeRate = "***";
+        String placeName = "zara";
+       
+       new Tourist().evaluPlace(Places, TouristComment, placeRate, placeName);
+       String expectedResult= "Your rating has been successfully submitted! Thank you for sharing your opinion."+ System.getProperty("line.separaror");
+        //instance.evaluPlace(Places, comment, rate, pName);
+
+        assertEquals(expectedResult, out.toString());
+    }
+    
+    
+        @Test
+    public void testEvaluPlace_PlaceNotExist() {
+        ByteArrayOutputStream out= new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        
+        ArrayList<Place> Places = new Supervisor().Places();
+        String TouristComment = "Place is nice!";
+        String placeRate = "****";
+        String placeName = "LabebCafe";
+       
+       new Tourist().evaluPlace(Places, TouristComment, placeRate, placeName);
+       String expectedResult= "Error, the place does not exist."+ System.getProperty("line.separaror");
+        //instance.evaluPlace(Places, comment, rate, pName);
+
+        assertEquals(expectedResult, out.toString());
+    }
+    
+            @Test
+    public void testEvaluPlace_StartsFalse() {
+        ByteArrayOutputStream out= new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        
+        ArrayList<Place> Places = new Supervisor().Places();
+        String TouristComment = "Place is nice!";
+        String placeRate = "*******";
+        String placeName = "zara";
+       
+       new Tourist().evaluPlace(Places, TouristComment, placeRate, placeName);
+       String expectedResult= "You rated incorrectly, please rate from one to five stars and no more."+ System.getProperty("line.separaror");
+        
+
+        assertEquals(expectedResult, out.toString());
     }
 
     /**
