@@ -23,6 +23,20 @@ public class CPIT251_Project {
 
         // Adding a tour guide 
         addTourGuides(TourGuides);
+        
+        // Supervisor account
+        User u = new User("ali123@gmail.com","Aa12345");
+        user.add(u);
+        
+        supervisors.AddSupervisor(new Supervisor(1,"Ali"));
+        
+        Place p = new Place("labeeb", 3, "L", "C", "***", "C", "description", "10am", "jeddah", "sari");
+        Place p2 = new Place("zara", 5, "shop", "C", "*", "A", "description", "9am", "newyork", "mainStreet");
+        Place pg = new Place("1/2 milion", 2, "vist", "family", "****", "A", "description", "9pm", "london", "jack");
+
+        supervisors.AddPlace(p, 1);
+        supervisors.AddPlace(p2, 1);
+        supervisors.AddPlace(pg, 1);
        
 
         //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -33,8 +47,7 @@ public class CPIT251_Project {
         System.out.println("****************************** Tajawl ******************************");
         System.out.println("********************************************************************\n\n");
          
-        AddSupervisor();
-        AddPlace();
+        
         
 
         //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
